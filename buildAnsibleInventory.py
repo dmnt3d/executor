@@ -1,20 +1,21 @@
 import sys
 
 dict = {} #create new dictionary to hold data
-filename = "../terravSphere/Swarm/swarm.tfvars"
+# filename = "~/Projects/terravSphere/Swarm/swarm.tfvars"
+filename = sys.argv[1]
 with open(filename) as file:
     for line in file: # process file line by line
         # parse using index of '=' as reference and put into dict
         key = line[0:line.find('=')-1] # store key
         value = line[line.find('=')+2:].rstrip().replace("\"","") # store value; strip out '\n' ; remove double quotes ""
-        #print ("KEY = " + key + "; VALUE = "+ value )
+        print ("KEY = " + key + "; VALUE = "+ value )
         dict[key] = value
 file.close()
 
 # start building out file
 # convert to INT
 # export to file
-exportfile = "../host-Config/inventory/inventory-swarm"
+exportfile = "/home/master/Projects/host-Config/inventory/inventory-swarm"
 fileEx = open (exportfile,"w+")
 count  = int(dict["count"])
 for x in range (count):
@@ -26,7 +27,7 @@ for x in range (count):
     
 
 fileEx.close()
-print ("Done export")
+print ("------ Done building ansible inventory")
 
 
 
