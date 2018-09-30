@@ -27,7 +27,7 @@ for x in range (count):
 
 fileEx.close()
 print ("Done export")
-#print inventory
+
 
 
 
